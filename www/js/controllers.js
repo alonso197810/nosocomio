@@ -41,7 +41,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope,$http) {
+.controller('PlaylistsCtrl', function($scope,$http,$ionicSideMenuDelegate,$cordovaLaunchNavigator) {
+    $ionicSideMenuDelegate.canDragContent(false)
     var mapa;
     var start;
     var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -82,19 +83,14 @@ angular.module('starter.controllers', [])
       });   
     }); 
     ruta = function(end){
-        directionsDisplay.setMap(mapa);
-          var request = {
-            origin:start,
-            destination:end,
-            travelMode: google.maps.TravelMode.DRIVING
-          };
-          directionsService.route(request, function(result, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(result);
-            }
-          });   
-        $scope.map = mapa;
-    };
+      var dest = [end.lat(),end.lng()];
+      var start = {};
+        $cordovaLaunchNavigator.navigate(dest,start).then(function () {
+        console.log("Navigator launched");
+      }, function (err) {
+        console.log(err);
+      });         
+    };  
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {

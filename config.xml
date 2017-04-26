@@ -14,6 +14,8 @@
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="ionic-plugin-keyboard"/>
   <plugin name="cordova-plugin-whitelist"/>
+  <plugin name="cordova-plugin-geolocation"/>
+  <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
